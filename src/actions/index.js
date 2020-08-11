@@ -11,8 +11,15 @@ import jsonPlaceholder from '../apis/jsonPlaceholder';
 // };
 //----------Refactor ---defining a function which returning function
 export const fetchPosts = () => async dispatch => {
-  const response = await jsonPlaceholder.get('./posts');
+  const response = await jsonPlaceholder.get('/posts');
 
   // dispatch({ type: 'FETCH_POSTS', payload: response });
    dispatch({ type: 'FETCH_POSTS', payload: response.data });
+};
+
+export const fetchUser = (id) => async dispatch => {
+  const response = await jsonPlaceholder.get(`/users/${id}`);
+
+  // dispatch({ type: 'FETCH_POSTS', payload: response });
+   dispatch({ type: 'FETCH_USER', payload: response.data });
 };

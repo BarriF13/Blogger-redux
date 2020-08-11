@@ -9,13 +9,24 @@ export class PostList extends Component {
     //action creator 
     this.props.fetchPosts();
   }
+  renderList(){
+    
+  }
   render() {
+    console.log(this.props.posts);
     return (
       <div className="item">
-      
+      Post list 
       </div>
     )
   }
 }
-
-export default connect(null, {fetchPosts})(PostList);
+//passing data from redux to react with below function-- and state below will have property of post because we assign to it in reducers/index.js
+const mapStateToProps = state => {
+  return {posts: state.posts};
+}
+export default connect(
+  //null, 
+  mapStateToProps,
+  {fetchPosts}
+  )(PostList);

@@ -1,5 +1,9 @@
 import { combineReducers } from 'redux';
-export default combineReducers({
-dummyReducer: () => 'iam a dummy'
+import PostsReducer from './PostsReducer';
 
-});
+
+export default combineReducers({
+  // passing object just to pass error 
+Posts: PostsReducer
+
+}); 

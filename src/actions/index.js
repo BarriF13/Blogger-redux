@@ -18,6 +18,7 @@ export const fetchPosts = () => async dispatch => {
    dispatch({ type: 'FETCH_POSTS', payload: response.data });
 };
 
+// --with this solution you can not re fetch users so not a best solution 
 export const fetchUser = (id) =>  dispatch => {
   _fetchUser(id, dispatch);
  // const response = await jsonPlaceholder.get(`/users/${id}`);
@@ -26,7 +27,7 @@ export const fetchUser = (id) =>  dispatch => {
   // dispatch({ type: 'FETCH_USER', payload: response.data });
 };
 
-// for memoizing we need to make a function outside the action creator so we only call it once not each time
+//---- for memoizing we need to make a function outside the action creator so we only call it once not each time
 // _private function , not should be call unless you know your stuff 
 const _fetchUser = _.memoize( async (id, dispatch) => {
   const response = await jsonPlaceholder.get(`/users/${id}`);

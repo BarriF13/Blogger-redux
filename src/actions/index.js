@@ -19,17 +19,25 @@ export const fetchPosts = () => async dispatch => {
 };
 
 // --with this solution you can not re fetch users so not a best solution 
-export const fetchUser = (id) =>  dispatch => {
-  _fetchUser(id, dispatch);
- // const response = await jsonPlaceholder.get(`/users/${id}`);
+// export const fetchUser = (id) =>  dispatch => {
+//   _fetchUser(id, dispatch);
+//  // const response = await jsonPlaceholder.get(`/users/${id}`);
 
-  // dispatch({ type: 'FETCH_POSTS', payload: response });
-  // dispatch({ type: 'FETCH_USER', payload: response.data });
-};
+//   // dispatch({ type: 'FETCH_POSTS', payload: response });
+//   // dispatch({ type: 'FETCH_USER', payload: response.data });
+// };
 
 //---- for memoizing we need to make a function outside the action creator so we only call it once not each time
 // _private function , not should be call unless you know your stuff 
-const _fetchUser = _.memoize( async (id, dispatch) => {
-  const response = await jsonPlaceholder.get(`/users/${id}`);
+// const _fetchUser = _.memoize( async (id, dispatch) => {
+//   const response = await jsonPlaceholder.get(`/users/${id}`);
+//   dispatch({ type: 'FETCH_USER', payload: response.data });
+// });
+
+//-- second solution for over fetching issue 
+export const fetchUser = (id) => async dispatch => {
+
+ const response = await jsonPlaceholder.get(`/users/${id}`);
+
   dispatch({ type: 'FETCH_USER', payload: response.data });
-});
+};

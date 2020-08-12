@@ -1,7 +1,14 @@
 import React, { Component } from 'react'
+import {connect} from 'react-redux';
+import {fetchUser} from '../actions'
 
-export class UserHeader extends Component {
+
+class UserHeader extends Component {
+  componentDidMount(){
+    this.props.fetchUser(this.props.userId);
+  }
   render() {
+    //need to call the action creator below to get the user names 
     return (
       <div>
         User Header 
@@ -10,4 +17,5 @@ export class UserHeader extends Component {
   }
 }
 
-export default UserHeader
+export default connect(null, {fetchUser})(UserHeader)
+;

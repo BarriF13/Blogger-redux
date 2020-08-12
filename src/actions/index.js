@@ -1,6 +1,15 @@
-import _ from 'lodash'
+import _ from 'lodash';
 import jsonPlaceholder from '../apis/jsonPlaceholder';
-//import axios from 'axios';
+
+
+
+
+ export const fetchPostsAndUsers = () => async (dispatch, getState) =>{
+   //console.log('about to ...');
+  await dispatch(fetchPosts());
+
+  console.log(  getState().posts);
+ }
 
 //--dispatch : we can change any data we want 
 //-- getState : we can read any data we want in the whole app

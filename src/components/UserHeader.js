@@ -8,8 +8,7 @@ class UserHeader extends Component {
     this.props.fetchUser(this.props.userId);
   }
   render() {
-    //need to call the action creator below to get the user names 
-    const user = this.props.users.find((user)=> user.id === this.props.userId);
+ const { user } = this.props;
     if(!user) {
       return null;
     }
@@ -20,8 +19,8 @@ class UserHeader extends Component {
     )
   }
 }
-const mapToStateProps=state =>{
-  return { users : state.users};
+const mapToStateProps= (state, ownProps) =>{
+  return { user: state.users.find(user => user.id === ownProps.userId)};
 };
 export default connect(
   mapToStateProps, 

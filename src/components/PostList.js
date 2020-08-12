@@ -28,7 +28,7 @@ export class PostList extends Component {
     });
   }
   render() {
-    console.log(this.props.posts);
+    //console.log(this.props.posts);
     return (
       <div className="ui relaxed divided list">
        {this.renderList()}

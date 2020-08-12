@@ -8,7 +8,8 @@ import jsonPlaceholder from '../apis/jsonPlaceholder';
    //console.log('about to ...');
   await dispatch(fetchPosts());
 
-  console.log(  getState().posts);
+  const userIds = _.uniq( _.map(getState().posts, 'userId'));
+  userIds.forEach(id => dispatch(fetchUser(id)));
  }
 
 //--dispatch : we can change any data we want 

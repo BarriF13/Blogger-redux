@@ -18,19 +18,17 @@ export const fetchPosts = () => async dispatch => {
    dispatch({ type: 'FETCH_POSTS', payload: response.data });
 };
 
-// export const fetchUser = (id) => async dispatch => {
-//   const response = await jsonPlaceholder.get(`/users/${id}`);
-
-//   // dispatch({ type: 'FETCH_POSTS', payload: response });
-//    dispatch({ type: 'FETCH_USER', payload: response.data });
-// };
-
- //---for using memoize we need to write differently
- export const fetchUser =  function(id){
-  return _.memoize(async function( dispatch) {
-  const response = await jsonPlaceholder.get(`/users/${id}`);
+export const fetchUser = (id) =>  dispatch => {
+  _fetchUser(id, dispatch);
+ // const response = await jsonPlaceholder.get(`/users/${id}`);
 
   // dispatch({ type: 'FETCH_POSTS', payload: response });
-   dispatch({ type: 'FETCH_USER', payload: response.data });
-  });
+  // dispatch({ type: 'FETCH_USER', payload: response.data });
 };
+
+// for memoizing we need to make a function outside the action creator so we only call it once not each time
+// _private function , not should be call unless you know your stuff 
+const _fetchUser = _.memoize( async (id, dispatch) => {
+  const response = await jsonPlaceholder.get(`/users/${id}`);
+  dispatch({ type: 'FETCH_USER', payload: response.data });
+});
